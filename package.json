@@ -72,6 +72,7 @@
     "eslint": "^9.32.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
+    "gh-pages": "^6.3.0",
     "globals": "^15.15.0",
     "lovable-tagger": "^1.1.10",
     "postcss": "^8.5.6",
@@ -81,4 +82,12 @@
     "vite": "^5.4.19"
   }
 }
-
+"scripts": {
+   "dev": "vite --host",
+   "build": "tsc && vite build",
+   // --- ADD THIS DEPLOY SCRIPT ---
+   "deploy": "npm run build && gh-pages -d dist",
+   // --- END ---
+   "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+   "preview": "vite preview"
+ },

@@ -82,12 +82,3 @@
     "vite": "^5.4.19"
   }
 }
-"scripts": {
-   "dev": "vite --host",
-   "build": "tsc && vite build",
-   // --- ADD THIS DEPLOY SCRIPT ---
-   "deploy": "npm run build && gh-pages -d dist",
-   // --- END ---
-   "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-   "preview": "vite preview"
- },

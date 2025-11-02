@@ -2,7 +2,8 @@ import { Toaster } from "./components/ui/toaster";
 import { Toaster as Sonner } from "./components/ui/sonner";
 import { TooltipProvider } from "./components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { HashRouter, Routes, Route } from "react-router-dom";
+// --- 1. REMOVE HashRouter from this import ---
+import { Routes, Route } from "react-router-dom";
 
 // Public Pages
 import Index from "./pages/Index";
@@ -29,32 +30,34 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <HashRouter>
-        <Routes>
-          {/* --- Public User-Facing Routes --- */}
-          <Route path="/" element={<Index />} />
-          <Route path="/recipes" element={<Recipes />} />
-          <Route path="/login" element={<Login />} />
-          
-          {/* --- Protected User Route (for recipe details) --- */}
-          <Route element={<ProtectedRoute />}>
-            <Route path="/recipe/:id" element={<RecipeDetail />} />
-          </Route>
+      
+      {/* --- 2. HashRouter component is REMOVED from here --- */}
+      <Routes>
+        {/* --- Public User-Facing Routes --- */}
+        <Route path="/" element={<Index />} />
+        <Route path="/recipes" element={<Recipes />} />
+        <Route path="/login" element={<Login />} />
+        
+        {/* --- Protected User Route (for recipe details) --- */}
+        <Route element={<ProtectedRoute />}>
+          <Route path="/recipe/:id" element={<RecipeDetail />} />
+        </Route>
 
-          {/* --- Protected Admin Routes --- */}
-          <Route element={<AdminRoute />}>
-            <Route path="/admin" element={<AdminHome />} />
-            <Route path="/admin/recipes" element={<AdminRecipes />} />
-            <Route path="/admin/recipes/new" element={<RecipeForm />} />
-            <Route path="/admin/recipes/edit/:id" element={<RecipeForm />} />
-            <Route path="/admin/recipes/:id" element={<AdminRecipeDetail />} /> {/* <-- ADDED */}
-            <Route path="/admin/users" element={<AdminUsers />} />
-          </Route>
+        {/* --- Protected Admin Routes --- */}
+        <Route element={<AdminRoute />}>
+          <Route path="/admin" element={<AdminHome />} />
+          <Route path="/admin/recipes" element={<AdminRecipes />} />
+          <Route path="/admin/recipes/new" element={<RecipeForm />} />
+          <Route path="/admin/recipes/edit/:id" element={<RecipeForm />} />
+          <Route path="/admin/recipes/:id" element={<AdminRecipeDetail />} />
+          <Route path="/admin/users" element={<AdminUsers />} />
+        </Route>
 
-          {/* Catch-all Not Found Route */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </HashRouter>
+        {/* Catch-all Not Found Route */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+      {/* --- 3. HashRouter component is REMOVED from here --- */}
+
     </TooltipProvider>
   </QueryClientProvider>
 );

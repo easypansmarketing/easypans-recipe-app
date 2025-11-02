@@ -5,6 +5,10 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  // --- This is the line I added for the GitHub Pages fix ---
+  base: "/easypans-recipe-app/",
+  // ---------------------------------------------------------
+
   server: {
     host: "::",
     port: 8080,
